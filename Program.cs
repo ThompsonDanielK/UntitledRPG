@@ -11,7 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Dependency injection
-builder.Services.AddSingleton<IDice, Dice>();
+builder.Services.AddScoped<IDice, Dice>();
 
 var app = builder.Build();
 
