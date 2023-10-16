@@ -1,14 +1,13 @@
 ﻿using UntitledRPG.Engine.Interfaces;
-using UntitledRPG.Engine.Models;
 
-namespace UntitledRPG.Engine
+namespace UntitledRPG.Engine.Models
 {
-    public class CombatSystem
+    public class BattleManager
     {
         private List<ICharacter> turnOrder;
         private ICharacter currentCharacter;
 
-        public CombatSystem(List<PlayerCharacter> playerCharacters, List<Enemy> enemies) 
+        public BattleManager(List<PlayerCharacter> playerCharacters, List<Enemy> enemies)
         {
             // Combine the player characters and enemies into a single list
             List<ICharacter> characters = new List<ICharacter>(playerCharacters);
@@ -22,24 +21,24 @@ namespace UntitledRPG.Engine
 
         public void StartCombat()
         {
-            while (turnOrder.Count > 1)
-            {
-                ICharacter currentCharacter = turnOrder.Dequeue();
-                ICharacter target = turnOrder.Peek(); 
+            //while (turnOrder.Count > 1)
+            //{
+            //    ICharacter currentCharacter = turnOrder.Dequeue();
+            //    ICharacter target = turnOrder.Peek(); 
 
-                Console.WriteLine($"It's {currentCharacter.Name}'s turn!");
-                TakeTurn(currentCharacter, target);
+            //    Console.WriteLine($"It's {currentCharacter.Name}'s turn!");
+            //    TakeTurn(currentCharacter, target);
 
-                if (target.IsDefeated())
-                {
-                    Console.WriteLine($"{target.Name} has been defeated!");
-                    turnOrder.Dequeue(); 
-                }
+            //    if (target.IsDefeated())
+            //    {
+            //        Console.WriteLine($"{target.Name} has been defeated!");
+            //        turnOrder.Dequeue(); 
+            //    }
 
-                turnOrder.Enqueue(currentCharacter);
-            }
+            //    turnOrder.Enqueue(currentCharacter);
+            //}
 
-            Console.WriteLine($"{turnOrder.Peek().Name} wins the battle!");
+            //Console.WriteLine($"{turnOrder.Peek().Name} wins the battle!");
         }
 
         private void TakeTurn(ICharacter attacker, ICharacter target)
