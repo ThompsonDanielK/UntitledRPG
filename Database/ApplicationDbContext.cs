@@ -4,14 +4,25 @@ namespace UntitledRPG.Database
 {
     public class ApplicationDbContext : DbContext
     {
-        // public DbSet<User> Users { get; set; }
+        private readonly IConfiguration _configuration;
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IConfiguration configuration)
+            : base(options)
+        {
+            _configuration = configuration;
+        }
+
+        // DbSet properties and other DbContext configurations go here
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                //optionsBuilder.UseMySql( "Server=your_mysql_server;Database=your_database_name;User=your_username;Password=your_password;");
-            }
+            // Retrieve connection string from IConfiguration
+            var connectionString = _configuration.GetConnectionString("DATABASE_CONNECTION_STRING");
+
+            // Use the connection string as needed
+            optionsBuilder.UseMySql(connectionString, new MariaDbServerVersion(new Version(8, 0, 34)));
+
+            base.OnConfiguring(optionsBuilder);
         }
     }
 }
