@@ -1,4 +1,4 @@
-﻿using UntitledRPG.Engine.Models;
+﻿using UntitledRPG.Models;
 
 namespace UntitledRPG.Engine.Interfaces
 {
