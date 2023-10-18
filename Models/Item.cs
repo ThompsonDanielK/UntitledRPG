@@ -1,4 +1,4 @@
-﻿namespace UntitledRPG.Engine.Models
+﻿namespace UntitledRPG.Models
 {
     public class Item
     {

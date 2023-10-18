@@ -1,7 +1,7 @@
 ﻿using UntitledRPG.Engine.Interfaces;
 using UntitledRPG.Engine.Utilities;
 
-namespace UntitledRPG.Engine.Models
+namespace UntitledRPG.Models
 {
     public class Character : ICharacter
     {

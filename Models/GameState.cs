@@ -1,6 +1,4 @@
-﻿using UntitledRPG.Engine.Models;
-
-namespace UntitledRPG.Database.Models
+﻿namespace UntitledRPG.Models
 {
     public class GameState
     {

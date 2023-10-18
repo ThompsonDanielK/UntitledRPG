@@ -1,6 +1,6 @@
 ﻿using UntitledRPG.Engine.Interfaces;
 
-namespace UntitledRPG.Engine.Models
+namespace UntitledRPG.Models
 {
     public class PlayerCharacter : Character
     {
