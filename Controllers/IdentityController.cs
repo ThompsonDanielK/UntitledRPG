@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using UntitledRPG.DTOs;
 using UntitledRPG.Models.IdentityModels;
 
 namespace UntitledRPG.Controllers

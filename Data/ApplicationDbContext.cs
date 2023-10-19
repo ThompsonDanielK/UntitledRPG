@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using UntitledRPG.Models;
 
 namespace UntitledRPG.Database
 {
@@ -12,7 +13,7 @@ namespace UntitledRPG.Database
             _configuration = configuration;
         }
 
-        // DbSet properties and other DbContext configurations go here
+        public DbSet<PlayerCharacter> PlayerCharacters { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
