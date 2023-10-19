@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
@@ -12,6 +13,31 @@ builder.Configuration.AddUserSecrets(Assembly.GetExecutingAssembly(), true);
 
 // Add services to the container.
 builder.Services.AddControllers();
+
+// Identity services
+builder.Services.AddIdentity<User, IdentityRole>()
+    .AddEntityFrameworkStores<IdentityContext>()
+    .AddDefaultTokenProviders();
+
+// Add authorization services
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    // Cookie settings
+    options.Cookie.HttpOnly = true;
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+
+    options.LoginPath = "/api/Identity/login";
+    options.AccessDeniedPath = "/api/404";
+    options.SlidingExpiration = true;
+});
+
+builder.Services.AddAuthorization(options =>
+{
+    options.FallbackPolicy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .Build();
+});
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -21,11 +47,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("DATABASE_CONNECTION_STRING"), new MariaDbServerVersion(new Version(8, 0, 34))));
 builder.Services.AddDbContext<IdentityContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("DATABASE_CONNECTION_STRING"), new MariaDbServerVersion(new Version(8, 0, 34))));
-
-// Identity services
-builder.Services.AddIdentity<User, IdentityRole>()
-    .AddEntityFrameworkStores<IdentityContext>()
-    .AddDefaultTokenProviders();
 
 // Dependency injection
 builder.Services.AddScoped<IDice, Dice>();
@@ -41,6 +62,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

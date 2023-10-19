@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using UntitledRPG.Models.IdentityModels;
 
@@ -17,6 +18,7 @@ namespace UntitledRPG.Controllers
             _signInManager = signInManager;
         }
 
+        [AllowAnonymous]
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
@@ -32,6 +34,7 @@ namespace UntitledRPG.Controllers
             return BadRequest(result.Errors);
         }
 
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
