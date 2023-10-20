@@ -2,10 +2,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using UntitledRPG.Data;
 using UntitledRPG.Database;
-using UntitledRPG.Engine.Interfaces;
 using UntitledRPG.Engine.Utilities;
 using UntitledRPG.Models.IdentityModels;
+using UntitledRPG.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,6 +50,8 @@ builder.Services.AddDbContext<IdentityContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("DATABASE_CONNECTION_STRING"), new MariaDbServerVersion(new Version(8, 0, 34))));
 
 // Dependency injection
+builder.Services.AddScoped<IPlayerCharacterService, PlayerCharacterService>();
+builder.Services.AddScoped<IPlayerCharacterRepository, PlayerCharacterRepository>();
 builder.Services.AddScoped<IDice, Dice>();
 
 var app = builder.Build();

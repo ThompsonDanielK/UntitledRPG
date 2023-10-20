@@ -1,5 +1,4 @@
-﻿using UntitledRPG.Engine.Interfaces;
-using UntitledRPG.Engine.Utilities;
+﻿using UntitledRPG.Services;
 
 namespace UntitledRPG.Models
 {
@@ -11,7 +10,6 @@ namespace UntitledRPG.Models
         public int Level { get; set; }
         public int ExperiencePoints { get; set; }
         public int Gold { get; set; }
-        public Inventory Inventory { get; set; }
         public int MaxHealth { get; set; }
         public int CurrentHealth { get; set; }
         public int Strength { get; set; }
@@ -22,11 +20,12 @@ namespace UntitledRPG.Models
         public int Charisma { get; set; }
         public int Initiative { get; private set; }
 
-        private readonly IDice _dice;
-
+        public Character()
+        {
+        }
         public Character(string name, string race, string characterClass, int level, int experiencePoints, int gold,
-                            Inventory inventory, int strength, int dexterity, int constitution,
-                            int intelligence, int wisdom, int charisma, IDice dice)
+                            int strength, int dexterity, int constitution,
+                            int intelligence, int wisdom, int charisma)
         {
             Name = name;
             Race = race;
@@ -34,15 +33,12 @@ namespace UntitledRPG.Models
             Level = level;
             ExperiencePoints = experiencePoints;
             Gold = gold;
-            Inventory = inventory;
             Strength = strength;
             Dexterity = dexterity;
             Constitution = constitution;
             Intelligence = intelligence;
             Wisdom = wisdom;
             Charisma = charisma;
-
-            _dice = dice;
         }
 
         public void Attack(Character target)
@@ -91,14 +87,14 @@ namespace UntitledRPG.Models
             return (abilityScore - 10) / 2;
         }
 
-        public int RollInitiative()
-        {
-            int dexModifier = GetAbilityModifier(Dexterity);
-            int iniativeRoll = _dice.Roll(20) + dexModifier;
-            Initiative = iniativeRoll;
+        //public int RollInitiative()
+        //{
+        //    int dexModifier = GetAbilityModifier(Dexterity);
+        //    int iniativeRoll = _dice.Roll(20) + dexModifier;
+        //    Initiative = iniativeRoll;
 
-            Console.WriteLine($"{Name} rolled {iniativeRoll} for initiative!");
-            return iniativeRoll;
-        }
+        //    Console.WriteLine($"{Name} rolled {iniativeRoll} for initiative!");
+        //    return iniativeRoll;
+        //}
     }
 }

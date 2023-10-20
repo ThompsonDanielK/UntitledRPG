@@ -1,6 +1,4 @@
-﻿using UntitledRPG.Models;
-
-namespace UntitledRPG.Engine.Interfaces
+﻿namespace UntitledRPG.Models
 {
     public interface ICharacter
     {
@@ -13,7 +11,6 @@ namespace UntitledRPG.Engine.Interfaces
         int Gold { get; set; }
         int Initiative { get; }
         int Intelligence { get; set; }
-        Inventory Inventory { get; set; }
         int Level { get; set; }
         int MaxHealth { get; set; }
         string Name { get; set; }
@@ -27,7 +24,7 @@ namespace UntitledRPG.Engine.Interfaces
         void Heal(int healingAmount);
         bool IsDefeated();
         void LevelUp();
-        int RollInitiative();
+        //int RollInitiative();
         void TakeDamage(int damage);
     }
 }

@@ -1,16 +1,28 @@
-﻿using UntitledRPG.Engine.Interfaces;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
+using System.Reflection.Emit;
+using System.Xml.Linq;
+using UntitledRPG.Services;
 
 namespace UntitledRPG.Models
 {
     public class PlayerCharacter : Character
     {
-        public PlayerCharacter(string name, string race, string characterClass, int level,
-                      int experiencePoints, int gold, Inventory inventory,
-                      int strength, int dexterity, int constitution,
-                      int intelligence, int wisdom, int charisma, IDice dice)
-            : base(name, race, characterClass, level, experiencePoints, gold, inventory,
-                  strength, dexterity, constitution, intelligence, wisdom, charisma, dice)
+        [Key]
+        public int PlayerCharacterId { get; set; }
+        public string UserId { get; set; }
+        public PlayerCharacter() : base()
         {
+
+        }
+        public PlayerCharacter(string name, string race, string characterClass, int level,
+                      int experiencePoints, int gold,
+                      int strength, int dexterity, int constitution,
+                      int intelligence, int wisdom, int charisma, string userId)
+            : base(name, race, characterClass, level, experiencePoints, gold,
+                  strength, dexterity, constitution, intelligence, wisdom, charisma)
+        {
+            UserId = userId;
         }
 
         public void GainExperience(int experiencePoints)

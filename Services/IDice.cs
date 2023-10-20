@@ -1,4 +1,4 @@
-﻿namespace UntitledRPG.Engine.Interfaces
+﻿namespace UntitledRPG.Services
 {
     public interface IDice
     {

@@ -1,6 +1,4 @@
-﻿using UntitledRPG.Engine.Interfaces;
-
-namespace UntitledRPG.Models
+﻿namespace UntitledRPG.Models
 {
     public class BattleManager
     {
@@ -55,7 +53,7 @@ namespace UntitledRPG.Models
             // Roll for initiative for each character
             foreach (ICharacter character in characters)
             {
-                character.RollInitiative();
+                //character.RollInitiative();
             }
 
             // Sort the characters by their initiative rolls
