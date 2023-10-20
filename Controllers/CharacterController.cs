@@ -37,5 +37,20 @@ namespace UntitledRPG.Controllers
             
             return Ok("Character created successfully");
         }
+
+        [HttpGet("retrive")]
+        public async Task<IActionResult> Retrieve()
+        {
+            string? userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (userId == null)
+            {
+                return Unauthorized("Invalid user");
+            }
+
+            List<PlayerCharacter> characters = _playerCharacterService.GetByUserId(userId);
+
+            return Ok(characters);
+        }
     }
 }

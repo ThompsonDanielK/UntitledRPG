@@ -1,4 +1,4 @@
-﻿using UntitledRPG.Database;
+using UntitledRPG.Database;
 using UntitledRPG.Models;
 
 namespace UntitledRPG.Data
@@ -12,10 +12,10 @@ namespace UntitledRPG.Data
             _context = context;
         }
 
-        //public List<PlayerCharacter> GetByUserId(string userId)
-        //{
-        //    return _context.PlayerCharacters.Where(character => character.UserId == userId).ToList();
-        //}
+        public List<PlayerCharacter> GetByUserId(string userId)
+        {
+            return _context.PlayerCharacters.Where(character => character.UserId == userId).ToList();
+        }
 
         public int Add(PlayerCharacter character)
         {

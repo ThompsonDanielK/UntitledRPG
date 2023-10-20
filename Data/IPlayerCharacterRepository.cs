@@ -1,4 +1,4 @@
-﻿using UntitledRPG.Models;
+using UntitledRPG.Models;
 
 namespace UntitledRPG.Data
 {
@@ -6,7 +6,7 @@ namespace UntitledRPG.Data
     {
         int Add(PlayerCharacter character);
         //void Delete(int id);
-        //List<PlayerCharacter> GetByUserId(string userId);
+        List<PlayerCharacter> GetByUserId(string userId);
         //void Update(PlayerCharacter character);
     }
 }

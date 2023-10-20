@@ -1,5 +1,5 @@
-﻿using UntitledRPG.Data;
 using UntitledRPG.DTOs;
+using UntitledRPG.Models;
 
 namespace UntitledRPG.Services
 {
@@ -7,5 +7,6 @@ namespace UntitledRPG.Services
     {
         bool CreateCharacter(CharacterCreationDTO characterSeed, string userId);
         bool IsStandardArray(int[] abilityScores);
+        List<PlayerCharacter> GetByUserId(string userId);
     }
 }
