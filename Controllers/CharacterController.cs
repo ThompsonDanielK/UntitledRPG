@@ -19,7 +19,7 @@ namespace UntitledRPG.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> Create([FromBody] CharacterCreation model)
+        public async Task<IActionResult> Create([FromBody] CharacterCreationDTO model)
         {
             string? userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 

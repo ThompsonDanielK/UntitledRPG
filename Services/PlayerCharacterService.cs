@@ -6,16 +6,16 @@ namespace UntitledRPG.Services
 {
     public class PlayerCharacterService : IPlayerCharacterService
     {
-        private readonly IDice _dice;
+        private readonly IRollService _dice;
         private IPlayerCharacterRepository _characterRepository;
 
-        public PlayerCharacterService(IDice dice, IPlayerCharacterRepository playerCharacterRepository)
+        public PlayerCharacterService(IRollService dice, IPlayerCharacterRepository playerCharacterRepository)
         {
             _dice = dice;
             _characterRepository = playerCharacterRepository;
         }
 
-        public bool CreateCharacter(CharacterCreation characterSeed, string userId)
+        public bool CreateCharacter(CharacterCreationDTO characterSeed, string userId)
         {
             int[] abilityScores =
             {

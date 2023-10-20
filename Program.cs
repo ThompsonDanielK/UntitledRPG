@@ -52,7 +52,7 @@ builder.Services.AddDbContext<IdentityContext>(options =>
 // Dependency injection
 builder.Services.AddScoped<IPlayerCharacterService, PlayerCharacterService>();
 builder.Services.AddScoped<IPlayerCharacterRepository, PlayerCharacterRepository>();
-builder.Services.AddScoped<IDice, Dice>();
+builder.Services.AddScoped<IRollService, RollService>();
 
 var app = builder.Build();
 
