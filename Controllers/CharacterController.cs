@@ -38,7 +38,7 @@ namespace UntitledRPG.Controllers
             return Ok("Character created successfully");
         }
 
-        [HttpGet("retrive")]
+        [HttpGet("retrieve")]
         public async Task<IActionResult> Retrieve()
         {
             string? userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -51,6 +51,42 @@ namespace UntitledRPG.Controllers
             List<PlayerCharacter> characters = _playerCharacterService.GetByUserId(userId);
 
             return Ok(characters);
+        }
+
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            string? userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (userId == null)
+            {
+                return Unauthorized("Invalid user");
+            }
+
+            if (!IsUserAllowedToModifyCharacter(userId, id))
+            {
+                return Unauthorized("User does not have permission to perform this action");
+            }
+
+            bool success = _playerCharacterService.DeleteCharacter(id);
+
+            if (!success)
+            {
+                return BadRequest("Character deletion failed");
+            }
+
+            return Ok("Character deleted successfully");
+        }
+
+        private bool IsUserAllowedToModifyCharacter(string userId, int characterId)
+        {
+            PlayerCharacter character = _playerCharacterService.GetById(characterId);
+
+            if (character == null)
+            {
+                return false;
+            }
+            return character.UserId == userId;
         }
     }
 }

@@ -6,12 +6,10 @@ namespace UntitledRPG.Services
 {
     public class PlayerCharacterService : IPlayerCharacterService
     {
-        private readonly IRollService _dice;
         private IPlayerCharacterRepository _characterRepository;
 
         public PlayerCharacterService(IRollService dice, IPlayerCharacterRepository playerCharacterRepository)
         {
-            _dice = dice;
             _characterRepository = playerCharacterRepository;
         }
 
@@ -54,7 +52,23 @@ namespace UntitledRPG.Services
             return numberOfCreatedEntries == 1;
         }
 
-        public bool IsStandardArray(int[] abilityScores)
+        public bool DeleteCharacter(int characterId)
+        {
+            int rowsAffected = _characterRepository.Delete(characterId);
+            return rowsAffected == 1;
+        }
+
+        public List<PlayerCharacter> GetByUserId(string userId)
+        {
+            return _characterRepository.GetByUserId(userId);
+        }
+
+        public PlayerCharacter? GetById(int characterId)
+        {
+            return _characterRepository.GetById(characterId);
+        }
+
+        private bool IsStandardArray(int[] abilityScores)
         {
             var standardArray = new int[] { 15, 14, 13, 12, 10, 8 };
 
