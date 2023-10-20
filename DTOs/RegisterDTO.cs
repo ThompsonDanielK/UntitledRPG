@@ -2,7 +2,7 @@
 
 namespace UntitledRPG.Models.IdentityModels
 {
-    public class RegisterModel
+    public class RegisterDTO
     {
         [Required]
         [EmailAddress]

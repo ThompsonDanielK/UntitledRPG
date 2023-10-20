@@ -1,6 +1,6 @@
 ﻿namespace UntitledRPG.Services
 {
-    public interface IDice
+    public interface IRollService
     {
         int Roll(int sides);
     }

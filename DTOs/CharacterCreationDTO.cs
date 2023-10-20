@@ -2,7 +2,7 @@
 
 namespace UntitledRPG.DTOs
 {
-    public class CharacterCreation
+    public class CharacterCreationDTO
     {
         [Required]
         public string Name { get; set; }

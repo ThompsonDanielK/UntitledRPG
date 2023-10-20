@@ -2,7 +2,7 @@
 
 namespace UntitledRPG.Models.IdentityModels
 {
-    public class LoginModel
+    public class LoginDTO
     {
         [Required]
         [EmailAddress]

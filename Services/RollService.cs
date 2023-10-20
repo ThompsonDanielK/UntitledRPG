@@ -2,11 +2,11 @@
 
 namespace UntitledRPG.Engine.Utilities
 {
-    public class Dice : IDice
+    public class RollService : IRollService
     {
         private Random random;
 
-        public Dice()
+        public RollService()
         {
             random = new Random();
         }
