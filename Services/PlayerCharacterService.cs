@@ -68,6 +68,17 @@ namespace UntitledRPG.Services
             return _characterRepository.GetById(characterId);
         }
 
+        public bool IsUserAllowedToModifyCharacter(string userId, int characterId)
+        {
+            PlayerCharacter? character = GetById(characterId);
+
+            if (character == null)
+            {
+                return false;
+            }
+            return character.UserId == userId;
+        }
+
         private bool IsStandardArray(int[] abilityScores)
         {
             var standardArray = new int[] { 15, 14, 13, 12, 10, 8 };

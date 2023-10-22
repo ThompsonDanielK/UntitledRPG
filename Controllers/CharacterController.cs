@@ -63,30 +63,19 @@ namespace UntitledRPG.Controllers
                 return Unauthorized("Invalid user");
             }
 
-            if (!IsUserAllowedToModifyCharacter(userId, id))
+            bool isAllowed = _playerCharacterService.IsUserAllowedToModifyCharacter(userId, id);
+            if (!isAllowed)
             {
                 return Unauthorized("User does not have permission to perform this action");
             }
 
             bool success = _playerCharacterService.DeleteCharacter(id);
-
             if (!success)
             {
                 return BadRequest("Character deletion failed");
             }
 
             return Ok("Character deleted successfully");
-        }
-
-        private bool IsUserAllowedToModifyCharacter(string userId, int characterId)
-        {
-            PlayerCharacter character = _playerCharacterService.GetById(characterId);
-
-            if (character == null)
-            {
-                return false;
-            }
-            return character.UserId == userId;
         }
     }
 }

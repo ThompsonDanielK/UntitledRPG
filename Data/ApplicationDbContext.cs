@@ -14,6 +14,7 @@ namespace UntitledRPG.Database
         }
 
         public DbSet<PlayerCharacter> PlayerCharacters { get; set; }
+        public DbSet<GameState> GameStates { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

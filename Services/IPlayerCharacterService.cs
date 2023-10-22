@@ -9,5 +9,6 @@ namespace UntitledRPG.Services
         bool DeleteCharacter(int characterId);
         List<PlayerCharacter> GetByUserId(string userId);
         PlayerCharacter? GetById(int characterId);
+        public bool IsUserAllowedToModifyCharacter(string userId, int characterId);
     }
 }

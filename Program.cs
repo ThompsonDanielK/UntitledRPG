@@ -52,6 +52,8 @@ builder.Services.AddDbContext<IdentityContext>(options =>
 // Dependency injection
 builder.Services.AddScoped<IPlayerCharacterService, PlayerCharacterService>();
 builder.Services.AddScoped<IPlayerCharacterRepository, PlayerCharacterRepository>();
+builder.Services.AddScoped<IGameStateService, GameStateService>();
+builder.Services.AddScoped<IGameStateRepository, GameStateRepository>();
 builder.Services.AddScoped<IRollService, RollService>();
 
 var app = builder.Build();
